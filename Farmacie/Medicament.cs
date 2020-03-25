@@ -12,7 +12,7 @@ namespace Farmacie
         public Medicament()
         {
             nume_med = data_exp = string.Empty;
-
+           
         }
         public Medicament(string _nume_med, string _data_exp, int[] _pret)
         {
