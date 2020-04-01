@@ -1,5 +1,6 @@
 ﻿using System;
-using Farmacie;
+using LibrarieClase;
+using NivelAccesDate;
 
 namespace Farmacie
 {
@@ -7,45 +8,162 @@ namespace Farmacie
     {
         static void Main(string[] args)
         {
-            Medicament t = new Medicament("Parasinus", "24.04.2019", 24, 10);
+            IStocareData adminMed = StocareFactory.GetAdministratorStocare();
+            Medicament[] medicamente;
             string opt;
+            int nrMed;
+            medicamente = adminMed.GetMed(out nrMed);
             bool ok = true;
             while (ok == true)
             {
-                
-                Console.WriteLine("A: Adaugare medicament "); // Implemnetat doar pentru cerinta laboratorului.
+                Console.Clear();
+                Console.WriteLine("A: Adaugare medicament ");
                 Console.WriteLine("E: Editare medicament");
                 Console.WriteLine("D: Stergere medicament");
-                Console.WriteLine("O: Afisare lista medicamente"); // urmeaza a fi implementata ca lista. Pentru moment am respectat doar cerinta laboratorului.
-                Console.WriteLine("S: Cautare medicamente");
+                Console.WriteLine("O: Afisare lista medicamente");
+                Console.WriteLine("S: Cautare medicament");
+                Console.WriteLine("C: Comparare");
                 Console.WriteLine("X: Iesire");
                 opt = Console.ReadLine();
                 switch (opt.ToUpper())
                 {
                     case "A":
-                        Console.WriteLine("Adaugati informatiile despre medicament");
-                        t.SetDate(Console.ReadLine());
+                        Console.Clear();
+                        Medicament t = Citire();
+                        medicamente[nrMed] = t;
+                        nrMed++;
+                        adminMed.AddMed(t);
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
                         break;
                     case "E":
-                        {
-                            break;
+                        Console.Clear();
+                        int z = 0;
+                        string mod;
+                        Console.WriteLine("Introduceti medicamentul pe care doriti sa-l modificati: ");
+                        string demodificat = Console.ReadLine();
+                        Console.WriteLine("Ce anume doriti sa modificati?");
+                        string modificare = Console.ReadLine();
+                        if (String.Compare(modificare, "pret") == 0)
+                            Console.WriteLine("Nu puteti modifica pretul!");
+                        else
+                        { 
+                            for (int i = 0; i < nrMed; i++)
+                            {
+                                if ((medicamente[i].Nume_med.CompareTo(demodificat)) == 0)
+                                {
+                                    z = 1;
+                                    if (String.Compare(modificare, "nume") == 0)
+                                    {
+                                        Console.WriteLine("Medicament gasit! Introduceti noua denumire:");
+                                        mod=Console.ReadLine();
+                                        medicamente[i].Nume_med = mod;
+                                    }
+                                    if (String.Compare(modificare, "data") == 0)
+                                    {
+                                        Console.WriteLine("Medicament gasit! Introduceti noua data de expirare:");
+                                        mod = Console.ReadLine();
+                                        medicamente[i].Data_exp = mod;
+                                    }
+                                    if (String.Compare(modificare, "Cantitate") == 0)
+                                    {
+                                        Console.WriteLine("Medicament gasit! Introduceti noua Cantitate:");
+                                        mod = Console.ReadLine();
+                                        medicamente[i].Cantitate = Convert.ToInt32(mod); 
+                                    }
+                                }
+                                if (z == 1)
+                                    i = nrMed;
+                            }
+                            if (z==0)
+                               Console.WriteLine(" Medicamentul nu exista!");
                         }
-                       
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
+                        break;
                     case "D":
+                        Console.Clear();
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
                         break;
                     case "O":
-                        Console.WriteLine(t.ConversieLaSir());
+                        Console.Clear();
+                        for (int i=0;i<nrMed;i++)
+                        {
+                            Console.WriteLine(medicamente[i].ConversieLaSir());
+                            Console.WriteLine("\n");
+                        }
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
                         break;
                     case "S":
-                        
+                        Console.Clear();
+                        int k = 0;
+                        Info();
+                        string decautat = Console.ReadLine();
+                        for (int i = 0; i < nrMed; i++)
+                            if ((medicamente[i].Nume_med.CompareTo(decautat)) == 0)
+                                k = 1;
+                        if (k == 1)
+                            Info1();
+                        else
+                            Info2();
+
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
                         break;
+
+                    case "C":
+                        Console.Clear();
+                        if (medicamente[0].Compara(medicamente[1]) == 1)
+                            Console.WriteLine("OK");
+                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.ReadKey();
+                        break;
+
                     case "X":
+                        Console.Clear();
                         ok = false;
                         break;
                 }
 
             }
+            Console.WriteLine("--------  Sfarit program --------\n");
+            Console.WriteLine("--------  PRESS ANY KEY --------");
             Console.ReadKey();
+        }
+        public static void Info()
+        {
+            Console.WriteLine("Introduceti numele medicamentului pe care doriti sa-l cautati: ");
+
+        }
+        public static void Info1()
+        {
+            Console.WriteLine("Medicamentul a fost gasit! ");
+
+        }
+        public static void Info2()
+        {
+            Console.WriteLine("Medicamentul nu exista! ");
+
+        }
+        public static Medicament Citire()
+        {
+            Console.WriteLine("Introduceti numele medicamentului: ");
+            string nume = Console.ReadLine();
+
+            Console.WriteLine("Introduceti data expirarii: ");
+            string data = Console.ReadLine();
+
+            Console.WriteLine("Introduceti pretul:");
+            int pret = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Introduceti Cantitatea:");
+            int Cantitate = Convert.ToInt32(Console.ReadLine());
+
+            Medicament t = new Medicament(nume, data, pret, Cantitate);
+
+            return t;
         }
     }
 }
