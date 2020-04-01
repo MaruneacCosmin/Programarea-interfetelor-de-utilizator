@@ -29,7 +29,7 @@ namespace Farmacie
                 {
                     case "A":
                         Console.Clear();
-                        Medicament t = Citire();
+                        Medicament t = CitireTast();
                         medicamente[nrMed] = t;
                         nrMed++;
                         adminMed.AddMed(t);
@@ -147,7 +147,7 @@ namespace Farmacie
             Console.WriteLine("Medicamentul nu exista! ");
 
         }
-        public static Medicament Citire()
+        public static Medicament CitireTast()
         {
             Console.WriteLine("Introduceti numele medicamentului: ");
             string nume = Console.ReadLine();

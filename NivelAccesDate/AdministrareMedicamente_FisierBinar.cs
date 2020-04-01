@@ -15,12 +15,12 @@ namespace NivelAccesDate
 
         public void AddMed(Medicament s)
         {
-            throw new Exception("Optiunea AddStudent nu este implementata");
+            throw new Exception("Optiunea AddMed nu este implementata");
         }
 
-        public Medicament[] GetMed(out int nrStudenti)
+        public Medicament[] GetMed(out int nrMed)
         {
-            throw new Exception("Optiunea GetStudenti nu este implementata");
+            throw new Exception("Optiunea GetMed nu este implementata");
         }
     }
 }
