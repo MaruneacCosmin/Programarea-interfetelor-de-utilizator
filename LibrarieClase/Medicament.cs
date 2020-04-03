@@ -8,20 +8,14 @@ namespace LibrarieClase
         private const string SEPARATOR_AFISARE = " ";
         private const char SEPARATOR_PRINCIPAL_FISIER = ' ';
 
-        // public static int NID { get; set; } = 0;
-        // public int ID { get; set; }
+        public static int NID { get; set; } = 0;
+        public int ID { get; set; }
         int pret; // data membra privata
         public string Nume_med { get; set; }
         public string Data_exp { get; set; }
         public int Cantitate { get; set; }
 
-        public enum TipMedicament
-        {
-            Antibiotic = 1,
-            Vaccin = 2,
-            Vitamine = 3,
-            Antiinflamator = 4
-        };
+        public TipMedicament TipMed { get; set; }
 
         //constructor implicit
         public Medicament()
@@ -29,7 +23,7 @@ namespace LibrarieClase
             Nume_med = Data_exp = string.Empty;
             pret = 0;
             Cantitate = 0;
-           // ID = ++NID;
+            ID = ++NID;
         }
 
         //constructor cu parametrii
@@ -39,18 +33,23 @@ namespace LibrarieClase
             Data_exp = _Data_exp;
             pret = _pret;
             Cantitate = _Cantitate;
-           // ID = ++NID;
+            ID = ++NID;
         }
 
         
         //metoda de setare a unor date introduse intr-o propozitie de la tastatura
         public Medicament(string date)
         {
+            
             var _date = date.Split(SEPARATOR_PRINCIPAL_FISIER);
-            Nume_med = _date[0];
-            Data_exp = _date[1];
-            Cantitate = Convert.ToInt32(_date[2]);
-            pret = Convert.ToInt32(_date[3]);
+            ID = Convert.ToInt32(_date[0]);
+            Console.WriteLine("ID ESTE {0}",ID);
+            Nume_med = _date[1];
+            Data_exp = _date[2];
+            Cantitate = Convert.ToInt32(_date[3]);
+            pret = Convert.ToInt32(_date[4]);
+            TipMed = (TipMedicament)Enum.Parse(typeof(TipMedicament), _date[5]);
+            NID = ID;
         }
 
         //metoda de convertire la sir pentru afisarea datelor
@@ -59,13 +58,12 @@ namespace LibrarieClase
             string sDate = "Nu exista (Nu ati apelat metoda **SetDate**)";
             if ( Nume_med != null)
             {
-                sDate = string.Join(", ",Nume_med, Data_exp, Cantitate, pret );
+                sDate = string.Join(", ", ID,Nume_med, Data_exp, Cantitate, pret, TipMed );
             }
             string s = string.Format(" {0} ", sDate);
             return s;
         }
       
-
         public int Compara(Medicament med)
         {
             return this.Data_exp.CompareTo(med.Data_exp);
@@ -73,13 +71,8 @@ namespace LibrarieClase
 
         public string ConversieLaSir_Fisier()
         {
-            string sMed = string.Empty;
-            if (Nume_med != null)
-            {
-                sMed = string.Join(SEPARATOR_AFISARE, pret);
-            }
-            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}", SEPARATOR_PRINCIPAL_FISIER, (Nume_med ?? " NECUNOSCUT "), (Data_exp ?? " NECUNOSCUT "), Cantitate, sMed);
-
+            
+            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}", SEPARATOR_PRINCIPAL_FISIER, ID, (Nume_med ?? " NECUNOSCUT "), (Data_exp ?? " NECUNOSCUT "), Cantitate, pret, TipMed);
             return s;
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace NivelAccesDate
 {
@@ -10,25 +11,81 @@ namespace NivelAccesDate
     {
         private const int PAS_ALOCARE = 10;
         string NumeFisier { get; set; }
+
+
         public AdministrareMedicamente_FisierText(string numeFisier)
         {
             this.NumeFisier = numeFisier;
             Stream sFisierText = File.Open(numeFisier, FileMode.OpenOrCreate);
             sFisierText.Close();
-
-            //liniile de mai sus pot fi inlocuite cu linia de cod urmatoare deoarece
-            //instructiunea 'using' va apela sFisierText.Close();
-            //using (Stream sFisierText = File.Open(numeFisier, FileMode.OpenOrCreate)) { }
+  
         }
-        public void AddMed(Medicament s)
+
+        public void ReplaceTextInFile(string searchTerm, string replaceTerm)
+        {
+            var content = string.Empty; 
+            using (StreamReader reader = new StreamReader(NumeFisier))
+            {
+                content = reader.ReadToEnd();
+                reader.Close();
+            }
+
+            content = Regex.Replace(content, searchTerm, replaceTerm);
+
+            using (StreamWriter writer = new StreamWriter(NumeFisier))
+            {
+                writer.Write(content);
+                writer.Close();
+            }
+        }
+
+        public void ModifMed(string x, string y, int id)
         {
             try
             {
-                //instructiunea 'using' va apela la final swFisierText.Close();
-                //al doilea parametru setat la 'true' al constructorului StreamWriter indica modul 'append' de deschidere al fisierului
+                // Deschide stream pentru fișierul sursă
+                using (var sourceFile = File.OpenText(NumeFisier))
+                {
+                    // Creaează o cale temporară unde putem modifica datele
+                    string tempFile = Path.Combine(Path.GetDirectoryName(NumeFisier), "Temporary.txt"); 
+                    // Deschide un stream pentru fișierul temporar
+                    using (var tempFileStream = new StreamWriter(tempFile))
+                    {
+                        string line;
+                        // Citește liniile 
+                        while ((line = sourceFile.ReadLine()) != null)
+                        {
+                            string[] date = line.Split(' ');
+                            Console.WriteLine("{0}", date[1]);
+                            string z= Console.ReadLine();
+                            if(date [0]== Convert.ToString(id))
+                                 line = line.Replace(x, y); // Face înlocuirea
+                            // Scrie linia nouă în fișierul temporar
+                            tempFileStream.WriteLine(line);
+                        }
+                    }
+                }
+                // Înlocuiește fișierul original cu cel temporar
+                File.Replace("Medicamente.txt", "Temporary.txt", null);
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("Eroare la deschiderea fisierului. Mesaj: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Eroare generica. Mesaj: " + eGen.Message);
+            }
+        }
+
+
+        public void AddMed(Medicament x)
+        {
+            try
+            {
                 using (StreamWriter swFisierText = new StreamWriter(NumeFisier, true))
                 {
-                    swFisierText.WriteLine(s.ConversieLaSir_Fisier());
+                    swFisierText.WriteLine(x.ConversieLaSir_Fisier());
                 }
             }
             catch (IOException eIO)
@@ -47,7 +104,6 @@ namespace NivelAccesDate
 
             try
             {
-                // instructiunea 'using' va apela sr.Close()
                 using (StreamReader sr = new StreamReader(NumeFisier))
                 {
                     string line;

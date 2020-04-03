@@ -17,7 +17,15 @@ namespace NivelAccesDate
         {
             throw new Exception("Optiunea AddMed nu este implementata");
         }
+        /*public void ReplaceTextInFile(string searchTerm, string replaceTerm)
+        {
+            throw new Exception("Opt nu este implementata");
+        }*/
 
+        public void ModifMed(string x, string y, int id)
+        {
+            throw new Exception("Optiunea ModifMed nu este implementata");
+        }
         public Medicament[] GetMed(out int nrMed)
         {
             throw new Exception("Optiunea GetMed nu este implementata");

@@ -13,6 +13,7 @@ namespace Farmacie
             string opt;
             int nrMed;
             medicamente = adminMed.GetMed(out nrMed);
+            Medicament.NID = nrMed;
             bool ok = true;
             while (ok == true)
             {
@@ -58,23 +59,28 @@ namespace Farmacie
                                         Console.WriteLine("Medicament gasit! Introduceti noua denumire:");
                                         mod=Console.ReadLine();
                                         medicamente[i].Nume_med = mod;
+                                        adminMed.ModifMed(medicamente[i].Nume_med, mod,medicamente[i].ID);
                                     }
                                     if (String.Compare(modificare, "data") == 0)
                                     {
                                         Console.WriteLine("Medicament gasit! Introduceti noua data de expirare:");
                                         mod = Console.ReadLine();
                                         medicamente[i].Data_exp = mod;
+                                        adminMed.ModifMed(medicamente[i].Data_exp, mod, medicamente[i].ID);
                                     }
                                     if (String.Compare(modificare, "Cantitate") == 0)
                                     {
                                         Console.WriteLine("Medicament gasit! Introduceti noua Cantitate:");
                                         mod = Console.ReadLine();
-                                        medicamente[i].Cantitate = Convert.ToInt32(mod); 
+                                        medicamente[i].Cantitate = Convert.ToInt32(mod);
+                                        string conv = medicamente[i].Cantitate.ToString();
+                                        adminMed.ModifMed(conv, mod, medicamente[i].ID);
                                     }
                                 }
                                 if (z == 1)
                                     i = nrMed;
                             }
+
                             if (z==0)
                                Console.WriteLine(" Medicamentul nu exista!");
                         }
@@ -83,7 +89,8 @@ namespace Farmacie
                         break;
                     case "D":
                         Console.Clear();
-                        Console.WriteLine("--------  PRESS ANY KEY --------");
+                        Console.WriteLine("--------  METODA ESTE IN CURS DE IMPLEMENTARE --------");
+                        Console.WriteLine("\t--------  PRESS ANY KEY --------");
                         Console.ReadKey();
                         break;
                     case "O":
@@ -128,8 +135,8 @@ namespace Farmacie
                 }
 
             }
-            Console.WriteLine("--------  Sfarit program --------\n");
-            Console.WriteLine("--------  PRESS ANY KEY --------");
+            Console.WriteLine("\n \n \n \n \n \n \n \n \t \t \t \t \t --------  Sfarit program --------\n \n ");
+            Console.WriteLine("\t \t \t \t \t --------  PRESS ANY KEY --------");
             Console.ReadKey();
         }
         public static void Info()
@@ -162,6 +169,14 @@ namespace Farmacie
             int Cantitate = Convert.ToInt32(Console.ReadLine());
 
             Medicament t = new Medicament(nume, data, pret, Cantitate);
+
+            Console.WriteLine("Introduceti tipul medicamentului:");
+            Console.WriteLine("1. Antibiotic \n" +
+                              "2. Vaccin \n" +
+                              "3. Vitamine \n" +
+                              "4. Antiinflamator \n");
+
+            t.TipMed = (TipMedicament)Int32.Parse(Console.ReadLine());
 
             return t;
         }
