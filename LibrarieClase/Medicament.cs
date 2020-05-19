@@ -15,7 +15,7 @@ namespace LibrarieClase
         public string Nume_med { get; set; }
         public int Cantitate { get; set; }
 
-        int Reducere = 0;
+        int Reducere;
 
         public DateTime Data_exp { get; set; }
         public DateTime DataActualizare { get; set; }
@@ -48,9 +48,7 @@ namespace LibrarieClase
 
         public void setReducere(int x)
         {
-            
                 Reducere = x;
-           
         }
 
         public int getReducere()
@@ -116,7 +114,7 @@ namespace LibrarieClase
 
         public string ConversieLaSir_Fisier()
         {
-            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}", SEPARATOR_PRINCIPAL_FISIER, ID, Nume_med, Pret, Cantitate, TipAdm, TipMedAsString, Doza, Data_exp, DataActualizare, Reducere);
+            string s = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}{9}{0}{10}", SEPARATOR_PRINCIPAL_FISIER, ID, Nume_med, Pret, Cantitate, TipAdm, TipMedAsString, Doza, Data_exp, DataActualizare, Reducere);
             return s;
         }
 

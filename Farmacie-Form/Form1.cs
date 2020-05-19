@@ -52,7 +52,7 @@ namespace Farmacie_Form
         {
             if (rdbDa.Checked)
                 x.setReducere(1);
-            if(rdbNu.Checked)
+            else
                 x.setReducere(0);
         }
 
@@ -260,6 +260,7 @@ namespace Farmacie_Form
                 s.Medicamente = new List<string>();
                 s.Medicamente.AddRange(medicamenteSelectate);
                 s.Doza = Int32.Parse(cmbDoza.Text);
+                s.DataActualizare = DateTime.Now;
                 try
                 {
                 adminMed.UpdateMed(s);
