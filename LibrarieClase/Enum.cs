@@ -13,14 +13,25 @@ namespace LibrarieClase
         Vitamine = 3,
         Antiinflamator = 4
     };
-
-    [Flags]
-    public enum CombinatiiMedicament
+    
+    public enum TipAdministrare
     {
-        Antibiotic = 1,
-        Vaccin = 2,
-        Vitamine = 3,
-        Antiinflamator = 4
-    }
+        Tip_Inexistent=0,
+        Orala =1,
+        Parenteral=2
+    };
 
+    public enum CampuriMedicament
+    {
+        /// s.ID, s.Nume_med, s.Data_exp, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.DataActualizare
+        ID = 0,
+        NUME = 1,
+ 
+        Pret = 2,
+        CANTITATE=3,
+        TIP_ADMINISTRARE = 4,
+        MEDICAMENTE = 5,
+        DOZA = 6 ,
+        DATA_EXP=7
+    };
 }
