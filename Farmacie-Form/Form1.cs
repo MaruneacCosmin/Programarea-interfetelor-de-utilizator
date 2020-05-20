@@ -41,21 +41,12 @@ namespace Farmacie_Form
                 s.Medicamente.AddRange(medicamenteSelectate);
                 s.Doza = Int32.Parse(cmbDoza.Text);
                 s.DataActualizare = DateTime.Now;
-                Reducere(s);
+              
                 adminMed.AddMed(s);
-                lblMesaj.Text = "Medicamentul a fost adaugat";
+                MessageBox.Show("Medicamentul a fost adaugat!");
                 ResetareControale();
             }
         }
-
-        void Reducere(Medicament x)
-        {
-            if (rdbDa.Checked)
-                x.setReducere(1);
-            else
-                x.setReducere(0);
-        }
-
 
         private void ResetareControale()
         {
@@ -88,7 +79,7 @@ namespace Farmacie_Form
             {
                 rezultatValidare |= CodEroare.Pret_INCORECT;
             }
-            // verificare ca este selectat tipul de aministrare
+           
             int administrareselect = 0;
             foreach (var control in rdboxAdministrare.Controls)
             {
@@ -150,7 +141,7 @@ namespace Farmacie_Form
             return TipAdministrare.Tip_Inexistent;
         }
 
-        private void btnAfiseaza_Click(object sender, EventArgs e)
+        public void btnAfiseaza_Click(object sender, EventArgs e)
         {
             this.Width = 1330;
             List<Medicament> medicamente = adminMed.GetMedicamente();
@@ -181,23 +172,20 @@ namespace Farmacie_Form
         }
         private void AdaugaMedicamentInControlDataGridView(List<Medicament> medicamenete)
         {
-            //reset continut control DataGridView
+            
             dataGridMedicamente.DataSource = null;
 
-            //!!!! Controlul de tip DataGridView are ca sursa de date lista de obiecte de tip Medicament !!!
-            //dataGridMedicamenti.DataSource = Medicamenti;
-
-            //personalizare sursa de date
-            dataGridMedicamente.DataSource = medicamenete.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare, Reducere =s.getReducere() }).ToList();
+            
+            dataGridMedicamente.DataSource = medicamenete.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare }).ToList();
         }
 
 
         private void btnCauta_Click(object sender, EventArgs e)
         {
-            Medicament t = adminMed.GetMed(txtNume_med.Text);
+            /*Medicament t = adminMed.GetMed(txtNume_med.Text);
             if (t != null)
             {
-                //lblMesaj.Text = t.ConversieLaSir();
+                
                 foreach (var tip in rdboxTip.Controls)
                 {
                     if (tip is CheckBox)
@@ -210,11 +198,11 @@ namespace Farmacie_Form
                 }
             }
             else
-                lblMesaj.Text = "Nu s-a gasit Medicamentul";
+                MessageBox.Show("Medicamentul nu a fost gasit!");
             if (txtNume_med.Enabled == true)
             {
                 txtNume_med.Enabled = false;  
-                //dezactivare butoane radio
+              
                 foreach (var button in rdboxAdministrare.Controls)
                 {
                     if (button is RadioButton)
@@ -236,57 +224,55 @@ namespace Farmacie_Form
                     }
                 }
             }
+            MessageBox.Show("Medicamentul a fost gasit!");*/
+
+            List < Medicament > medicamente = adminMed.GetMedicamente();
+            bool ok = false;
+            lstAfisare.Items.Clear();
+            foreach (Medicament m in medicamente)
+            {
+                if(m.Nume_med==txtNume_med.Text)
+                {
+                    lstAfisare.Items.Add(m.ConversieLaSir_Fisier());
+                    ok = true;
+                }
+            }
+            if (ok==true)
+            
+                MessageBox.Show("Medicamentul a fost gasit!");
+
+            else
+                MessageBox.Show("Medicamentul nu a fost gasit!");
+
+
+
         }
 
 
 
         private void btnModifica_Click(object sender, EventArgs e)
         {
-            ResetCuloareEtichete();
-
-            CodEroare codValidare = Validare(txtNume_med.Text, txtPret.Text, txtCantitate.Text);
-
-            if (codValidare != CodEroare.CORECT)
+            int index = lstAfisare.SelectedIndex + 1;
+            Medicament x = adminMed.GetMedByIndex(index);
+            if(x is null)
             {
-                MarcheazaControaleCuDateIncorecte(codValidare);
+                MessageBox.Show("Nu ati selectat niciun medicament");
             }
-            else
-            {
-                Medicament s = new Medicament(txtNume_med.Text, txtPret.Text, txtCantitate.Text);
-                s.Data_exp = dtpData_exp.Value;
-                s.ID = Int32.Parse(lblID.Text);
-                s.TipAdm = GetTipAdmSelectat();
-                //set Discipline
-                s.Medicamente = new List<string>();
-                s.Medicamente.AddRange(medicamenteSelectate);
-                s.Doza = Int32.Parse(cmbDoza.Text);
-                s.DataActualizare = DateTime.Now;
-                try
-                {
-                adminMed.UpdateMed(s);
-                lblMesaj.Text = "Medicamentul a fost actualizat";
-                }
-                catch(Exception eGen)
-                {
-                    lblMesaj.Text = eGen.Message;
-                }
-
-                //resetarea controalelor pentru a introduce datele unui Medicament nou
-                ResetareControale();
-            }
+            Modifica f = new Modifica();
+            f.Medd= x;
+            f.frmPrincipala = this;
+            f.Show();
         }
 
 
 
         private void ckbTip_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox checkBoxControl = sender as CheckBox; //operator 'as'
-            //sau
-            //CheckBox checkBoxControl = (CheckBox)sender;  //operator cast
+            CheckBox checkBoxControl = sender as CheckBox; 
+            
 
             string medicamentSelectat = checkBoxControl.Text;
 
-            //verificare daca checkbox-ul asupra caruia s-a actionat este selectat
             if (checkBoxControl.Checked == true)
                 medicamenteSelectate.Add(medicamentSelectat);
             else
@@ -301,7 +287,7 @@ namespace Farmacie_Form
             Medicament t = null;
             try
             {
-                t = adminMed.GetMedByIndex(lstAfisare.SelectedIndex);
+                t = adminMed.GetMedByIndex(lstAfisare.SelectedIndex +1);
             }
             catch (Exception ex)
             {
@@ -354,8 +340,7 @@ namespace Farmacie_Form
         {
             try
             {
-                //instructiunea 'using' va apela la final swFisierText.Close();
-                //al doilea parametru setat la 'true' al constructorului StreamWriter indica modul 'append' de deschidere al fisierului
+                
                 using (StreamWriter swFisierText = new StreamWriter(numeFisier, true))
                 {
                     foreach (Medicament s in Medicamente)
@@ -377,7 +362,28 @@ namespace Farmacie_Form
         private void filtrareMed(object sender, EventArgs e)
         {
             List<Medicament> sub100 = adminMed.GetMedPret();
-            dataGridMedicamente.DataSource = sub100.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare, Reducere = s.getReducere() }).ToList();
+            dataGridMedicamente.DataSource = sub100.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare }).ToList();
+        }
+
+        private void btnDataF_Click(object sender, EventArgs e)
+        {
+            
+            List<Medicament> sub100 = adminMed.GetMedData(dtpLow.Value,dtpHigh.Value);
+            dataGridMedicamente.DataSource = sub100.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare }).ToList();
+        }
+
+        private void btnReducere_Click(object sender, EventArgs e)
+        {
+            int index = lstAfisare.SelectedIndex + 1;
+            Medicament x = adminMed.GetMedByIndex(index);
+            if(x!=null)
+            {
+                if (x.Reducere == true)
+                    lblReducere.Text = "Se poate aplica o reducere";
+               
+                if(x.Reducere==false)
+                    lblReducere.Text = "Nu se poate aplica o reducere";
+            }
         }
     }
 }

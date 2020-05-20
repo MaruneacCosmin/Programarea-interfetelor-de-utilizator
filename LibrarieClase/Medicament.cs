@@ -15,7 +15,16 @@ namespace LibrarieClase
         public string Nume_med { get; set; }
         public int Cantitate { get; set; }
 
-        int Reducere;
+        public bool Reducere
+        {
+            get
+            {
+                if (Pret <= 100)
+                    return true;
+                else
+                    return false;
+            }
+        }
 
         public DateTime Data_exp { get; set; }
         public DateTime DataActualizare { get; set; }
@@ -46,15 +55,7 @@ namespace LibrarieClase
             }
         }
 
-        public void setReducere(int x)
-        {
-                Reducere = x;
-        }
-
-        public int getReducere()
-        {
-            return Reducere;
-        }
+       
 
         //constructor implicit
         public Medicament()
@@ -70,9 +71,8 @@ namespace LibrarieClase
         public Medicament(string _Nume_med, string _Pret, string _Cantitate)
         {
             Nume_med = _Nume_med;
-           
-            Pret = Convert.ToInt32(_Pret);
-            Cantitate = Convert.ToInt32 (_Cantitate);
+            Pret = Convert.ToInt32(_Cantitate);
+            Cantitate = Convert.ToInt32 (_Pret);
             ID = ++NID;
         }
 
@@ -83,19 +83,20 @@ namespace LibrarieClase
            /// s.ID, s.Nume_med, s.Data_exp, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.DataActualizare
             var dateFisier = date.Split(SEPARATOR_PRINCIPAL_FISIER);
 
-            //ordinea de preluare a campurilor este data de ordinea in care au fost scrise in fisier prin apelul implicit al metodei ToString()
+            
             ID = Convert.ToInt32(dateFisier[(int)CampuriMedicament.ID]);
             Nume_med = dateFisier[(int)CampuriMedicament.NUME];
             Pret= Convert.ToInt32(dateFisier[(int)CampuriMedicament.Pret]);
             Cantitate = Convert.ToInt32(dateFisier[(int)CampuriMedicament.CANTITATE]);
             TipAdm = (TipAdministrare)Enum.Parse(typeof(TipAdministrare), dateFisier[(int)CampuriMedicament.TIP_ADMINISTRARE]);
             Medicamente = new List<string>();
-            //adauga mai multe elemente in lista de discipline
             Medicamente.AddRange(dateFisier[(int)CampuriMedicament.MEDICAMENTE].Split(SEPARATOR_SECUNDAR_FISIER));
             Doza = Int32.Parse(dateFisier[(int)CampuriMedicament.DOZA]);
+            Data_exp = Convert.ToDateTime(dateFisier[(int)CampuriMedicament.DATA_EXP]);
+            DataActualizare = Convert.ToDateTime(dateFisier[(int)CampuriMedicament.DATA_ACT]);
         }
 
-        //metoda de convertire la sir pentru afisarea datelor
+       
         public string ConversieLaSir()
         {
             string sDate = "Nu exista (Nu ati apelat metoda **SetDate**)";

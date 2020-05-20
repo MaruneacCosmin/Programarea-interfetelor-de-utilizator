@@ -26,12 +26,12 @@ namespace LibrarieClase
         /// s.ID, s.Nume_med, s.Data_exp, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.DataActualizare
         ID = 0,
         NUME = 1,
- 
         Pret = 2,
         CANTITATE=3,
         TIP_ADMINISTRARE = 4,
         MEDICAMENTE = 5,
         DOZA = 6 ,
-        DATA_EXP=7
+        DATA_EXP=7,
+        DATA_ACT=8
     };
 }

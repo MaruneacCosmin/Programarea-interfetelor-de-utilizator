@@ -1,4 +1,5 @@
 ﻿using LibrarieClase;
+using System;
 using System.Collections.Generic;
 
 namespace NivelAccesDate
@@ -7,15 +8,16 @@ namespace NivelAccesDate
     public interface IStocareData
     {
         List<Medicament> GetMedicamente();
-        Medicament GetMedByIndex(int index);
-
+        Medicament GetMedByIndex(int index);  
         void AddMed(Medicament x);
         Medicament GetMed(string nume);
 
         bool UpdateMed(Medicament s);
 
+        void UpdateMedd(Medicament Actualizat, int index);
+
         List<Medicament> GetMedPret();
 
-        //void ReplaceTextInFile(string searchTerm, string replaceTerm);
+        List<Medicament> GetMedData(DateTime x, DateTime y);
     }
 }

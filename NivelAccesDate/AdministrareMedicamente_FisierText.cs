@@ -41,6 +41,40 @@ namespace NivelAccesDate
             }
         }
 
+        public void UpdateMedd(Medicament Actualizat, int index)
+        {
+            List<Medicament> medicamente = GetMedicamente();
+           
+            try
+            {
+
+                using (StreamWriter swFisierText = new StreamWriter(NumeFisier, false))
+                {
+                    foreach (Medicament med in medicamente)
+                    {
+
+                        if (med.ID != index)
+                        {
+                            swFisierText.WriteLine(med.ConversieLaSir_Fisier());
+                        }
+                        else
+                        {
+                            swFisierText.WriteLine(Actualizat.ConversieLaSir_Fisier());
+                        }
+                    }
+                    
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("Eroare la deschiderea fisierului. Mesaj: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Eroare generica. Mesaj: " + eGen.Message);
+            }
+        }
+
         public bool UpdateMed(Medicament medActualizat)
         {
             List<Medicament> medicamente = GetMedicamente();
@@ -171,14 +205,14 @@ namespace NivelAccesDate
                 using (StreamReader sr = new StreamReader(NumeFisier))
                 {
                     string line;
-                    int contor = 0;
+                    
                     //citeste cate o linie si creaza un obiect de tip Medicament pe baza datelor din linia citita
                     while ((line = sr.ReadLine()) != null)
                     {
                         Medicament Medicament = new Medicament(line);
-                        if (contor == index)
+                        if (Medicament.ID == index)
                             return Medicament;
-                        contor++;
+                        
                     }
                 }
             }
@@ -269,5 +303,18 @@ namespace NivelAccesDate
             }
             return sub100;
         }
+
+        public List<Medicament> GetMedData(DateTime x, DateTime y)
+        {
+             List<Medicament> Medicamente = GetMedicamente();
+              List<Medicament> md = new List<Medicament>();
+              foreach (Medicament s in Medicamente)
+              {
+                  if ((s.Data_exp >= x)&&(s.Data_exp<=y))
+                      md.Add(s);
+              }
+            return md;
+        }
+
     }
 }

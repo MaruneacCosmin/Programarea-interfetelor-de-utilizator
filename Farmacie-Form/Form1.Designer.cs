@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnModifica = new System.Windows.Forms.Button();
             this.btnAfiseaza = new System.Windows.Forms.Button();
             this.btnCauta = new System.Windows.Forms.Button();
@@ -59,22 +60,22 @@
             this.menuFiltrare = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSalvare = new System.Windows.Forms.ToolStripMenuItem();
             this.lblID = new System.Windows.Forms.Label();
-            this.lblMesaj = new System.Windows.Forms.Label();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
+            this.lblMesaj = new System.Windows.Forms.Label();
+            this.dtpLow = new System.Windows.Forms.DateTimePicker();
+            this.dtpHigh = new System.Windows.Forms.DateTimePicker();
+            this.btnDataF = new System.Windows.Forms.Button();
+            this.btnReducere = new System.Windows.Forms.Button();
             this.lblReducere = new System.Windows.Forms.Label();
-            this.grbReducere = new System.Windows.Forms.GroupBox();
-            this.rdbDa = new System.Windows.Forms.RadioButton();
-            this.rdbNu = new System.Windows.Forms.RadioButton();
             this.rdboxAdministrare.SuspendLayout();
             this.rdboxTip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMedicamente)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.grbReducere.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(312, 504);
+            this.btnModifica.Location = new System.Drawing.Point(312, 469);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(107, 25);
             this.btnModifica.TabIndex = 0;
@@ -84,7 +85,7 @@
             // 
             // btnAfiseaza
             // 
-            this.btnAfiseaza.Location = new System.Drawing.Point(177, 502);
+            this.btnAfiseaza.Location = new System.Drawing.Point(177, 469);
             this.btnAfiseaza.Name = "btnAfiseaza";
             this.btnAfiseaza.Size = new System.Drawing.Size(107, 27);
             this.btnAfiseaza.TabIndex = 1;
@@ -94,7 +95,7 @@
             // 
             // btnCauta
             // 
-            this.btnCauta.Location = new System.Drawing.Point(312, 462);
+            this.btnCauta.Location = new System.Drawing.Point(312, 422);
             this.btnCauta.Name = "btnCauta";
             this.btnCauta.Size = new System.Drawing.Size(107, 25);
             this.btnCauta.TabIndex = 2;
@@ -104,7 +105,7 @@
             // 
             // btnAdauga
             // 
-            this.btnAdauga.Location = new System.Drawing.Point(177, 462);
+            this.btnAdauga.Location = new System.Drawing.Point(177, 422);
             this.btnAdauga.Name = "btnAdauga";
             this.btnAdauga.Size = new System.Drawing.Size(107, 25);
             this.btnAdauga.TabIndex = 3;
@@ -369,59 +370,64 @@
             // lblMesaj
             // 
             this.lblMesaj.AutoSize = true;
-            this.lblMesaj.Location = new System.Drawing.Point(174, 564);
+            this.lblMesaj.Location = new System.Drawing.Point(378, 559);
             this.lblMesaj.Name = "lblMesaj";
             this.lblMesaj.Size = new System.Drawing.Size(0, 17);
-            this.lblMesaj.TabIndex = 26;
+            this.lblMesaj.TabIndex = 30;
+            // 
+            // dtpLow
+            // 
+            this.dtpLow.Location = new System.Drawing.Point(178, 511);
+            this.dtpLow.Name = "dtpLow";
+            this.dtpLow.Size = new System.Drawing.Size(200, 22);
+            this.dtpLow.TabIndex = 31;
+            // 
+            // dtpHigh
+            // 
+            this.dtpHigh.Location = new System.Drawing.Point(178, 539);
+            this.dtpHigh.Name = "dtpHigh";
+            this.dtpHigh.Size = new System.Drawing.Size(200, 22);
+            this.dtpHigh.TabIndex = 32;
+            // 
+            // btnDataF
+            // 
+            this.btnDataF.Location = new System.Drawing.Point(12, 510);
+            this.btnDataF.Name = "btnDataF";
+            this.btnDataF.Size = new System.Drawing.Size(130, 23);
+            this.btnDataF.TabIndex = 33;
+            this.btnDataF.Text = "Filtrare dupa data";
+            this.btnDataF.UseVisualStyleBackColor = true;
+            this.btnDataF.Click += new System.EventHandler(this.btnDataF_Click);
+            // 
+            // btnReducere
+            // 
+            this.btnReducere.Location = new System.Drawing.Point(178, 583);
+            this.btnReducere.Name = "btnReducere";
+            this.btnReducere.Size = new System.Drawing.Size(241, 23);
+            this.btnReducere.TabIndex = 34;
+            this.btnReducere.Text = "Reduceri";
+            this.btnReducere.UseVisualStyleBackColor = true;
+            this.btnReducere.Click += new System.EventHandler(this.btnReducere_Click);
             // 
             // lblReducere
             // 
             this.lblReducere.AutoSize = true;
-            this.lblReducere.Location = new System.Drawing.Point(38, 421);
+            this.lblReducere.Location = new System.Drawing.Point(457, 28);
             this.lblReducere.Name = "lblReducere";
-            this.lblReducere.Size = new System.Drawing.Size(70, 17);
-            this.lblReducere.TabIndex = 27;
-            this.lblReducere.Text = "Reducere";
-            // 
-            // grbReducere
-            // 
-            this.grbReducere.Controls.Add(this.rdbNu);
-            this.grbReducere.Controls.Add(this.rdbDa);
-            this.grbReducere.Location = new System.Drawing.Point(177, 411);
-            this.grbReducere.Name = "grbReducere";
-            this.grbReducere.Size = new System.Drawing.Size(242, 35);
-            this.grbReducere.TabIndex = 28;
-            this.grbReducere.TabStop = false;
-            // 
-            // rdbDa
-            // 
-            this.rdbDa.AutoSize = true;
-            this.rdbDa.Location = new System.Drawing.Point(23, 9);
-            this.rdbDa.Name = "rdbDa";
-            this.rdbDa.Size = new System.Drawing.Size(47, 21);
-            this.rdbDa.TabIndex = 0;
-            this.rdbDa.TabStop = true;
-            this.rdbDa.Text = "Da";
-            this.rdbDa.UseVisualStyleBackColor = true;
-            // 
-            // rdbNu
-            // 
-            this.rdbNu.AutoSize = true;
-            this.rdbNu.Location = new System.Drawing.Point(160, 9);
-            this.rdbNu.Name = "rdbNu";
-            this.rdbNu.Size = new System.Drawing.Size(47, 21);
-            this.rdbNu.TabIndex = 1;
-            this.rdbNu.TabStop = true;
-            this.rdbNu.Text = "Nu";
-            this.rdbNu.UseVisualStyleBackColor = true;
+            this.lblReducere.Size = new System.Drawing.Size(0, 17);
+            this.lblReducere.TabIndex = 36;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1450, 618);
-            this.Controls.Add(this.grbReducere);
             this.Controls.Add(this.lblReducere);
+            this.Controls.Add(this.btnReducere);
+            this.Controls.Add(this.btnDataF);
+            this.Controls.Add(this.dtpHigh);
+            this.Controls.Add(this.dtpLow);
             this.Controls.Add(this.lblMesaj);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.dataGridMedicamente);
@@ -455,8 +461,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMedicamente)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.grbReducere.ResumeLayout(false);
-            this.grbReducere.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,12 +499,13 @@
         private System.Windows.Forms.ToolStripMenuItem menuFiltrare;
         private System.Windows.Forms.ToolStripMenuItem menuSalvare;
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.Label lblMesaj;
         private System.Windows.Forms.SaveFileDialog sfd;
+        private System.Windows.Forms.Label lblMesaj;
+        private System.Windows.Forms.DateTimePicker dtpLow;
+        private System.Windows.Forms.DateTimePicker dtpHigh;
+        private System.Windows.Forms.Button btnDataF;
+        private System.Windows.Forms.Button btnReducere;
         private System.Windows.Forms.Label lblReducere;
-        private System.Windows.Forms.GroupBox grbReducere;
-        private System.Windows.Forms.RadioButton rdbNu;
-        private System.Windows.Forms.RadioButton rdbDa;
     }
 }
 

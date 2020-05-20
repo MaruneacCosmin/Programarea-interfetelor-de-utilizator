@@ -23,6 +23,7 @@ namespace NivelAccesDate
             //using (Stream sBinFile = File.Open(numeFisier, FileMode.OpenOrCreate)) { }
         }
 
+        
         public void AddMed(Medicament s)
         {
             s.ID = GetId();
@@ -47,7 +48,39 @@ namespace NivelAccesDate
                 throw new Exception("Eroare generica. Mesaj: " + eGen.Message);
             }
         }
+        public void UpdateMedd(Medicament Actualizat, int index)
+        {
+            List<Medicament> medicamente = GetMedicamente();
+            
+            try
+            {
 
+                using (StreamWriter swFisierText = new StreamWriter(NumeFisier, false))
+                {
+                    foreach (Medicament med in medicamente)
+                    {
+
+                        if (med.ID != index)
+                        {
+                            swFisierText.WriteLine(med.ConversieLaSir_Fisier());
+                        }
+                        else
+                        {
+                            swFisierText.WriteLine(Actualizat.ConversieLaSir_Fisier());
+                        }
+                    }
+                    
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("Eroare la deschiderea fisierului. Mesaj: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Eroare generica. Mesaj: " + eGen.Message);
+            }
+        }
         public List<Medicament> GetMedicamente()
         {
             List<Medicament> Medicamenti = new List<Medicament>();
@@ -194,6 +227,17 @@ namespace NivelAccesDate
                     sub100.Add(s);
             }
             return sub100;
+        }
+        public List<Medicament> GetMedData(DateTime x, DateTime y)
+        {
+            List<Medicament> Medicamente = GetMedicamente();
+            List<Medicament> md = new List<Medicament>();
+            foreach (Medicament s in Medicamente)
+            {
+                if ((s.Data_exp >= x) && (s.Data_exp <= y))
+                    md.Add(s);
+            }
+            return md;
         }
     }
 }
