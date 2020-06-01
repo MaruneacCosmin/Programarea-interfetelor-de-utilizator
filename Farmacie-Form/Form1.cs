@@ -152,79 +152,22 @@ namespace Farmacie_Form
         private void AdaugaMedicamentInControlListbox(List<Medicament> medicamente)
         {
             lstAfisare.Items.Clear();
-
-            //personalizare sursa de date
-            //var antetTabel = String.Format("{0,-5}{1,-35}{2,20}{3,10}\n", "Id", "Nume Prenume", "ProgramStudiu", "Medie");
-            //lstAfisare.Items.Add(antetTabel);
-
             foreach (Medicament s in medicamente)
             {
-                //pentru a adauga un obiect de tip Medicament in colectia de Items a unui control de tip ListBox, 
-                // clasa Medicament trebuie sa implementeze metoda ToString() specificand cuvantul cheie 'override' in definitie
-                //pentru a arata ca metoda ToString a clasei de baza (Object) este suprascrisa
                 lstAfisare.Items.Add(s);
 
-
-                //personalizare sursa de date
-                //var linieTabel = String.Format("{0,-5}{1,-35}{2,20}{3,10}\n", s.IdMedicament, s.NumeComplet, s.ProgramSTD.ToString(), s.Media.ToString());
-                //lstAfisare.Items.Add(linieTabel);
             }
         }
         private void AdaugaMedicamentInControlDataGridView(List<Medicament> medicamenete)
         {
-            
             dataGridMedicamente.DataSource = null;
-
-            
             dataGridMedicamente.DataSource = medicamenete.Select(s => new { s.ID, s.Nume_med, s.Pret, s.Cantitate, s.TipAdm, Tip = string.Join(",", s.Medicamente), s.Doza, s.Data_exp, s.DataActualizare }).ToList();
         }
 
 
         private void btnCauta_Click(object sender, EventArgs e)
         {
-            /*Medicament t = adminMed.GetMed(txtNume_med.Text);
-            if (t != null)
-            {
-                
-                foreach (var tip in rdboxTip.Controls)
-                {
-                    if (tip is CheckBox)
-                    {
-                        var tipBox = tip as CheckBox;
-                        foreach (String dis in t.Medicamente)
-                            if (tipBox.Text.Equals(dis))
-                                tipBox.Checked = true;
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Medicamentul nu a fost gasit!");
-            if (txtNume_med.Enabled == true)
-            {
-                txtNume_med.Enabled = false;  
-              
-                foreach (var button in rdboxAdministrare.Controls)
-                {
-                    if (button is RadioButton)
-                    {
-                        var radioButton = button as RadioButton;
-                        radioButton.Enabled = false;
-                    }
-                }
-            }
-            else
-            {
-                txtNume_med.Enabled = true;
-                foreach (var button in rdboxAdministrare.Controls)
-                {
-                    if (button is RadioButton)
-                    {
-                        var radioButton = button as RadioButton;
-                        radioButton.Enabled = true;
-                    }
-                }
-            }
-            MessageBox.Show("Medicamentul a fost gasit!");*/
+           
 
             List < Medicament > medicamente = adminMed.GetMedicamente();
             bool ok = false;
@@ -294,11 +237,16 @@ namespace Farmacie_Form
                 lblMesaj.Text = "Eroare: " + ex.Message;
             }
 
+
             if (t != null)
             {
                 lblID.Text = t.ID.ToString();
 
+
                 txtNume_med.Text = t.Nume_med;
+                txtPret.Text = t.Pret.ToString();
+                txtCantitate.Text = t.Cantitate.ToString();
+
 
                 foreach (var admn in rdboxAdministrare.Controls)
                 {
@@ -324,6 +272,7 @@ namespace Farmacie_Form
                 }
 
                 cmbDoza.Text = t.Doza.ToString();
+
                 
             }
         }
@@ -384,6 +333,11 @@ namespace Farmacie_Form
                 if(x.Reducere==false)
                     lblReducere.Text = "Nu se poate aplica o reducere";
             }
+        }
+
+        private void cmbDoza_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

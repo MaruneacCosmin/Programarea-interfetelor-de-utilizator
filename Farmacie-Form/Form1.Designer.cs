@@ -56,9 +56,6 @@
             this.cmbDoza = new System.Windows.Forms.ComboBox();
             this.lblDoza = new System.Windows.Forms.Label();
             this.dataGridMedicamente = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuFiltrare = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSalvare = new System.Windows.Forms.ToolStripMenuItem();
             this.lblID = new System.Windows.Forms.Label();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.lblMesaj = new System.Windows.Forms.Label();
@@ -67,15 +64,21 @@
             this.btnDataF = new System.Windows.Forms.Button();
             this.btnReducere = new System.Windows.Forms.Button();
             this.lblReducere = new System.Windows.Forms.Label();
+            this.menuPanel = new System.Windows.Forms.Panel();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.btnAdministreaza = new System.Windows.Forms.Button();
+            this.btnListaMed = new System.Windows.Forms.Button();
+            this.btnAcasa = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.rdboxAdministrare.SuspendLayout();
             this.rdboxTip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMedicamente)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.menuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnModifica
             // 
-            this.btnModifica.Location = new System.Drawing.Point(312, 469);
+            this.btnModifica.Location = new System.Drawing.Point(473, 469);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(107, 25);
             this.btnModifica.TabIndex = 0;
@@ -85,7 +88,7 @@
             // 
             // btnAfiseaza
             // 
-            this.btnAfiseaza.Location = new System.Drawing.Point(177, 469);
+            this.btnAfiseaza.Location = new System.Drawing.Point(338, 469);
             this.btnAfiseaza.Name = "btnAfiseaza";
             this.btnAfiseaza.Size = new System.Drawing.Size(107, 27);
             this.btnAfiseaza.TabIndex = 1;
@@ -95,7 +98,7 @@
             // 
             // btnCauta
             // 
-            this.btnCauta.Location = new System.Drawing.Point(312, 422);
+            this.btnCauta.Location = new System.Drawing.Point(473, 422);
             this.btnCauta.Name = "btnCauta";
             this.btnCauta.Size = new System.Drawing.Size(107, 25);
             this.btnCauta.TabIndex = 2;
@@ -105,7 +108,7 @@
             // 
             // btnAdauga
             // 
-            this.btnAdauga.Location = new System.Drawing.Point(177, 422);
+            this.btnAdauga.Location = new System.Drawing.Point(329, 422);
             this.btnAdauga.Name = "btnAdauga";
             this.btnAdauga.Size = new System.Drawing.Size(107, 25);
             this.btnAdauga.TabIndex = 3;
@@ -116,7 +119,7 @@
             // lblNume_med
             // 
             this.lblNume_med.AutoSize = true;
-            this.lblNume_med.Location = new System.Drawing.Point(34, 45);
+            this.lblNume_med.Location = new System.Drawing.Point(420, 44);
             this.lblNume_med.Name = "lblNume_med";
             this.lblNume_med.Size = new System.Drawing.Size(125, 17);
             this.lblNume_med.TabIndex = 4;
@@ -125,7 +128,7 @@
             // lblData_exp
             // 
             this.lblData_exp.AutoSize = true;
-            this.lblData_exp.Location = new System.Drawing.Point(34, 83);
+            this.lblData_exp.Location = new System.Drawing.Point(420, 75);
             this.lblData_exp.Name = "lblData_exp";
             this.lblData_exp.Size = new System.Drawing.Size(91, 17);
             this.lblData_exp.TabIndex = 5;
@@ -134,7 +137,7 @@
             // lblPret
             // 
             this.lblPret.AutoSize = true;
-            this.lblPret.Location = new System.Drawing.Point(34, 120);
+            this.lblPret.Location = new System.Drawing.Point(420, 103);
             this.lblPret.Name = "lblPret";
             this.lblPret.Size = new System.Drawing.Size(34, 17);
             this.lblPret.TabIndex = 6;
@@ -143,7 +146,7 @@
             // lblCantitate
             // 
             this.lblCantitate.AutoSize = true;
-            this.lblCantitate.Location = new System.Drawing.Point(34, 158);
+            this.lblCantitate.Location = new System.Drawing.Point(420, 131);
             this.lblCantitate.Name = "lblCantitate";
             this.lblCantitate.Size = new System.Drawing.Size(64, 17);
             this.lblCantitate.TabIndex = 7;
@@ -160,7 +163,7 @@
             // lblTip_med
             // 
             this.lblTip_med.AutoSize = true;
-            this.lblTip_med.Location = new System.Drawing.Point(34, 295);
+            this.lblTip_med.Location = new System.Drawing.Point(424, 233);
             this.lblTip_med.Name = "lblTip_med";
             this.lblTip_med.Size = new System.Drawing.Size(108, 17);
             this.lblTip_med.TabIndex = 9;
@@ -169,7 +172,7 @@
             // lblAdministrare
             // 
             this.lblAdministrare.AutoSize = true;
-            this.lblAdministrare.Location = new System.Drawing.Point(34, 205);
+            this.lblAdministrare.Location = new System.Drawing.Point(420, 159);
             this.lblAdministrare.Name = "lblAdministrare";
             this.lblAdministrare.Size = new System.Drawing.Size(87, 17);
             this.lblAdministrare.TabIndex = 10;
@@ -202,7 +205,7 @@
             // 
             this.rdboxAdministrare.Controls.Add(this.rbOrala);
             this.rdboxAdministrare.Controls.Add(this.rbParenteral);
-            this.rdboxAdministrare.Location = new System.Drawing.Point(177, 187);
+            this.rdboxAdministrare.Location = new System.Drawing.Point(557, 159);
             this.rdboxAdministrare.Name = "rdboxAdministrare";
             this.rdboxAdministrare.Size = new System.Drawing.Size(242, 68);
             this.rdboxAdministrare.TabIndex = 13;
@@ -214,7 +217,7 @@
             this.rdboxTip.Controls.Add(this.checkVitamine);
             this.rdboxTip.Controls.Add(this.checkVaccin);
             this.rdboxTip.Controls.Add(this.checkAntibiotic);
-            this.rdboxTip.Location = new System.Drawing.Point(177, 274);
+            this.rdboxTip.Location = new System.Drawing.Point(557, 233);
             this.rdboxTip.Name = "rdboxTip";
             this.rdboxTip.Size = new System.Drawing.Size(242, 88);
             this.rdboxTip.TabIndex = 14;
@@ -266,28 +269,28 @@
             // 
             // dtpData_exp
             // 
-            this.dtpData_exp.Location = new System.Drawing.Point(177, 83);
+            this.dtpData_exp.Location = new System.Drawing.Point(557, 75);
             this.dtpData_exp.Name = "dtpData_exp";
             this.dtpData_exp.Size = new System.Drawing.Size(242, 22);
             this.dtpData_exp.TabIndex = 15;
             // 
             // txtNume_med
             // 
-            this.txtNume_med.Location = new System.Drawing.Point(177, 45);
+            this.txtNume_med.Location = new System.Drawing.Point(557, 47);
             this.txtNume_med.Name = "txtNume_med";
             this.txtNume_med.Size = new System.Drawing.Size(242, 22);
             this.txtNume_med.TabIndex = 16;
             // 
             // txtCantitate
             // 
-            this.txtCantitate.Location = new System.Drawing.Point(177, 155);
+            this.txtCantitate.Location = new System.Drawing.Point(557, 131);
             this.txtCantitate.Name = "txtCantitate";
             this.txtCantitate.Size = new System.Drawing.Size(242, 22);
             this.txtCantitate.TabIndex = 17;
             // 
             // txtPret
             // 
-            this.txtPret.Location = new System.Drawing.Point(177, 117);
+            this.txtPret.Location = new System.Drawing.Point(557, 103);
             this.txtPret.Name = "txtPret";
             this.txtPret.Size = new System.Drawing.Size(242, 22);
             this.txtPret.TabIndex = 18;
@@ -296,9 +299,9 @@
             // 
             this.lstAfisare.FormattingEnabled = true;
             this.lstAfisare.ItemHeight = 16;
-            this.lstAfisare.Location = new System.Drawing.Point(460, 45);
+            this.lstAfisare.Location = new System.Drawing.Point(838, 45);
             this.lstAfisare.Name = "lstAfisare";
-            this.lstAfisare.Size = new System.Drawing.Size(598, 516);
+            this.lstAfisare.Size = new System.Drawing.Size(220, 516);
             this.lstAfisare.TabIndex = 19;
             this.lstAfisare.SelectedIndexChanged += new System.EventHandler(this.lstAfisare_SelectedIndexChanged);
             // 
@@ -309,15 +312,16 @@
             "250",
             "500",
             "1000"});
-            this.cmbDoza.Location = new System.Drawing.Point(177, 377);
+            this.cmbDoza.Location = new System.Drawing.Point(557, 327);
             this.cmbDoza.Name = "cmbDoza";
             this.cmbDoza.Size = new System.Drawing.Size(242, 24);
             this.cmbDoza.TabIndex = 20;
+            this.cmbDoza.SelectedIndexChanged += new System.EventHandler(this.cmbDoza_SelectedIndexChanged);
             // 
             // lblDoza
             // 
             this.lblDoza.AutoSize = true;
-            this.lblDoza.Location = new System.Drawing.Point(38, 377);
+            this.lblDoza.Location = new System.Drawing.Point(420, 327);
             this.lblDoza.Name = "lblDoza";
             this.lblDoza.Size = new System.Drawing.Size(41, 17);
             this.lblDoza.TabIndex = 21;
@@ -326,38 +330,12 @@
             // dataGridMedicamente
             // 
             this.dataGridMedicamente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridMedicamente.Location = new System.Drawing.Point(1064, 47);
+            this.dataGridMedicamente.Location = new System.Drawing.Point(1064, 44);
             this.dataGridMedicamente.Name = "dataGridMedicamente";
             this.dataGridMedicamente.RowHeadersWidth = 51;
             this.dataGridMedicamente.RowTemplate.Height = 24;
-            this.dataGridMedicamente.Size = new System.Drawing.Size(374, 510);
+            this.dataGridMedicamente.Size = new System.Drawing.Size(374, 517);
             this.dataGridMedicamente.TabIndex = 22;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFiltrare,
-            this.menuSalvare});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1450, 28);
-            this.menuStrip1.TabIndex = 24;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // menuFiltrare
-            // 
-            this.menuFiltrare.Name = "menuFiltrare";
-            this.menuFiltrare.Size = new System.Drawing.Size(226, 26);
-            this.menuFiltrare.Text = "Filtrare medicamente cantitate";
-            this.menuFiltrare.Click += new System.EventHandler(this.filtrareMed);
-            // 
-            // menuSalvare
-            // 
-            this.menuSalvare.Name = "menuSalvare";
-            this.menuSalvare.Size = new System.Drawing.Size(123, 26);
-            this.menuSalvare.Text = "Salvare in fisier";
-            this.menuSalvare.Click += new System.EventHandler(this.salvareInFisierToolStripMenuItem_Click);
             // 
             // lblID
             // 
@@ -377,21 +355,21 @@
             // 
             // dtpLow
             // 
-            this.dtpLow.Location = new System.Drawing.Point(178, 511);
+            this.dtpLow.Location = new System.Drawing.Point(586, 458);
             this.dtpLow.Name = "dtpLow";
             this.dtpLow.Size = new System.Drawing.Size(200, 22);
             this.dtpLow.TabIndex = 31;
             // 
             // dtpHigh
             // 
-            this.dtpHigh.Location = new System.Drawing.Point(178, 539);
+            this.dtpHigh.Location = new System.Drawing.Point(599, 486);
             this.dtpHigh.Name = "dtpHigh";
             this.dtpHigh.Size = new System.Drawing.Size(200, 22);
             this.dtpHigh.TabIndex = 32;
             // 
             // btnDataF
             // 
-            this.btnDataF.Location = new System.Drawing.Point(12, 510);
+            this.btnDataF.Location = new System.Drawing.Point(624, 541);
             this.btnDataF.Name = "btnDataF";
             this.btnDataF.Size = new System.Drawing.Size(130, 23);
             this.btnDataF.TabIndex = 33;
@@ -401,7 +379,7 @@
             // 
             // btnReducere
             // 
-            this.btnReducere.Location = new System.Drawing.Point(178, 583);
+            this.btnReducere.Location = new System.Drawing.Point(557, 570);
             this.btnReducere.Name = "btnReducere";
             this.btnReducere.Size = new System.Drawing.Size(241, 23);
             this.btnReducere.TabIndex = 34;
@@ -417,12 +395,91 @@
             this.lblReducere.Size = new System.Drawing.Size(0, 17);
             this.lblReducere.TabIndex = 36;
             // 
+            // menuPanel
+            // 
+            this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.menuPanel.Controls.Add(this.btnInfo);
+            this.menuPanel.Controls.Add(this.btnAdministreaza);
+            this.menuPanel.Controls.Add(this.btnListaMed);
+            this.menuPanel.Controls.Add(this.btnAcasa);
+            this.menuPanel.Controls.Add(this.panelLogo);
+            this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Size = new System.Drawing.Size(250, 618);
+            this.menuPanel.TabIndex = 37;
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInfo.FlatAppearance.BorderSize = 0;
+            this.btnInfo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfo.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnInfo.Location = new System.Drawing.Point(0, 235);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(250, 45);
+            this.btnInfo.TabIndex = 41;
+            this.btnInfo.Text = "Informatii";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            // 
+            // btnAdministreaza
+            // 
+            this.btnAdministreaza.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAdministreaza.FlatAppearance.BorderSize = 0;
+            this.btnAdministreaza.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAdministreaza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdministreaza.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAdministreaza.Location = new System.Drawing.Point(0, 190);
+            this.btnAdministreaza.Name = "btnAdministreaza";
+            this.btnAdministreaza.Size = new System.Drawing.Size(250, 45);
+            this.btnAdministreaza.TabIndex = 40;
+            this.btnAdministreaza.Text = "Administrare ";
+            this.btnAdministreaza.UseVisualStyleBackColor = true;
+            // 
+            // btnListaMed
+            // 
+            this.btnListaMed.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnListaMed.FlatAppearance.BorderSize = 0;
+            this.btnListaMed.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnListaMed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListaMed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnListaMed.Location = new System.Drawing.Point(0, 145);
+            this.btnListaMed.Name = "btnListaMed";
+            this.btnListaMed.Size = new System.Drawing.Size(250, 45);
+            this.btnListaMed.TabIndex = 38;
+            this.btnListaMed.Text = "Lista medicamente";
+            this.btnListaMed.UseVisualStyleBackColor = true;
+            // 
+            // btnAcasa
+            // 
+            this.btnAcasa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAcasa.FlatAppearance.BorderSize = 0;
+            this.btnAcasa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAcasa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcasa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAcasa.Location = new System.Drawing.Point(0, 100);
+            this.btnAcasa.Name = "btnAcasa";
+            this.btnAcasa.Size = new System.Drawing.Size(250, 45);
+            this.btnAcasa.TabIndex = 39;
+            this.btnAcasa.Text = "Acasa";
+            this.btnAcasa.UseVisualStyleBackColor = true;
+            // 
+            // panelLogo
+            // 
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(250, 100);
+            this.panelLogo.TabIndex = 38;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1450, 618);
+            this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.lblReducere);
             this.Controls.Add(this.btnReducere);
             this.Controls.Add(this.btnDataF);
@@ -451,16 +508,13 @@
             this.Controls.Add(this.btnCauta);
             this.Controls.Add(this.btnAfiseaza);
             this.Controls.Add(this.btnModifica);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.rdboxAdministrare.ResumeLayout(false);
             this.rdboxAdministrare.PerformLayout();
             this.rdboxTip.ResumeLayout(false);
             this.rdboxTip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMedicamente)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,9 +549,6 @@
         private System.Windows.Forms.ComboBox cmbDoza;
         private System.Windows.Forms.Label lblDoza;
         private System.Windows.Forms.DataGridView dataGridMedicamente;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuFiltrare;
-        private System.Windows.Forms.ToolStripMenuItem menuSalvare;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.SaveFileDialog sfd;
         private System.Windows.Forms.Label lblMesaj;
@@ -506,6 +557,12 @@
         private System.Windows.Forms.Button btnDataF;
         private System.Windows.Forms.Button btnReducere;
         private System.Windows.Forms.Label lblReducere;
+        private System.Windows.Forms.Panel menuPanel;
+        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnAdministreaza;
+        private System.Windows.Forms.Button btnListaMed;
+        private System.Windows.Forms.Button btnAcasa;
+        private System.Windows.Forms.Panel panelLogo;
     }
 }
 
